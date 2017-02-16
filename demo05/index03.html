@@ -1,0 +1,36 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Vue.js Demo</title>
+    <script src="../lib/vue.js"></script>
+</head>
+<body>
+<div id="app">
+    <simple-counter></simple-counter>
+    <simple-counter></simple-counter>
+    <simple-counter></simple-counter>
+</div>
+<script>
+    var data = {
+        counter: 0
+    };
+
+    Vue.component('simple-counter', {
+        template: '<button v-on:click="counter += 1">{{ counter }}</button>',
+        // data 是一个函数，因此 Vue 不会警告，
+        // 但是我们为每一个组件返回了同一个对象引用
+        data: function () {
+            return data;
+        }
+    })
+
+    var app = new Vue({
+        el: '#app'
+    });
+</script>
+</body>
+</html>

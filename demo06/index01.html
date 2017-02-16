@@ -1,0 +1,30 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Vue.js Demo</title>
+    <script src="../lib/vue.js"></script>
+</head>
+<body>
+    <div id="app">
+        <child-component message="父组件和子组件之间的参数传递"></child-component>
+    </div>
+
+    <script>
+        Vue.component('child-component', {
+            // 声明 props
+            props: ['message'],
+            // 就像 data 一样，prop 可以用在模板内
+            // 同样也可以在 vm 实例中像 “this.message” 这样使用
+            template: '<span>{{ message }}</span>'
+        });
+
+        var app = new Vue({
+            el: '#app'
+        });
+    </script>
+</body>
+</html>
