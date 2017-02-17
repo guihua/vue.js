@@ -1,48 +1,36 @@
 <!doctype html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Vue.js Demo</title>
     <script src="../lib/vue.js"></script>
 </head>
-
 <body>
     <div id="app">
-        <p>{{ total }}</p>
-        <button-counter v-on:increment="incrementTotal"></button-counter>
-        <button-counter v-on:increment="incrementTotal"></button-counter>
+        <child-component v-show="someChildProperty"></child-component>
     </div>
+
     <script>
-        Vue.component('button-counter', {
-            template: '<button v-on:click="increment">{{ counter }}</button>',
-            data: function () {
+        Vue.component('child-component', {
+            template: '<div v-show="someChildProperty">Child</div>',
+            data: function() {
                 return {
-                    counter: 0
+                    someChildProperty: false
                 }
-            },
-            methods: {
-                increment: function () {
-                    this.counter += 1;
-                    this.$emit('increment');
-                }
-            },
+            }
         });
 
-        new Vue({
+        var app = new Vue({
             el: '#app',
-            data: {
-                total: 0
-            },
-            methods: {
-                incrementTotal: function () {
-                    this.total += 1;
+            data: function() {
+                return {
+                    someChildProperty: true
                 }
             }
         });
     </script>
 </body>
-
 </html>
